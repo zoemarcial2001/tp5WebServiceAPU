@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-8">
+        <div class="album py-5">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col" *ngFor="let pelicula of peliculas">
+                  <div class="card shadow-sm">
+                    <img [src]="pelicula.img" alt="imagen">
+                    <div class="card-img-overlay">
+                      <h5 class="text-warning"><i class="bi bi-star"></i>{{pelicula.puntaje}}</h5>
+                  </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{pelicula.titulo}}</h5>
+                        <h6 class="card-subtitle"></h6>
+                      <p class="card-text">{{pelicula.fecha}}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <img class="publicidad" src="https://i.pinimg.com/564x/65/46/44/654644aec8937154a82ad0a649ab96c2.jpg" alt="hola">
+    </div>
+</div>

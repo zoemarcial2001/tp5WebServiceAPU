@@ -1,0 +1,74 @@
+<head>
+  <link rel="stylesheet" href="punto-a.component.css">
+</head>
+
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 col-6 d-grid">
+                  <button type="button" class="btn btn-lg" (click)="seleccionarIdioma('it')"><img class="trad" src="https://i.pinimg.com/474x/5c/bb/7f/5cbb7fd63df9616a2395d48df7c78a2b--italia-patchwork.jpg"/>  Italiano</button>
+                </div>
+
+                <div class="col-md-3 col-6 d-grid ">
+                  <button type="button" class="btn btn-lg" (click)="seleccionarIdioma('fr')"><img class="trad" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/270px-Flag_of_France.svg.png"/>   Frances</button>
+                </div>
+
+                <div class="col-md-3 col-6 d-grid">
+                  <button type="button" class="btn btn-lg" (click)="seleccionarIdioma('en')"><img class="trad" src="https://getflags.net/img1000/gb.png"/>   Ingles</button>
+                </div>
+
+                <div class="col-md-3 col-6 d-grid">
+                  <button type="button" class="btn btn-lg" (click)="seleccionarIdioma('es')"><img class="trad" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png"/>   Español</button>
+                </div>
+            </div>
+            <br>
+            <textarea class="form-control" id="textoTraduc" rows="5" #Texto></textarea>
+            <br>
+
+            <div class="row">
+              <div class="col-md-3 col-6 d-grid">
+                <button type="button" class="btn btn-lg" (click)="seleccionarIdiomaTraducir('it')"><img class="trad" src="https://i.pinimg.com/474x/5c/bb/7f/5cbb7fd63df9616a2395d48df7c78a2b--italia-patchwork.jpg"/>  Italiano</button>
+              </div>
+
+              <div class="col-md-3 col-6 d-grid ">
+                <button type="button" class="btn btn-lg" (click)="seleccionarIdiomaTraducir('fr')"><img class="trad" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/270px-Flag_of_France.svg.png"/>   Frances</button>
+              </div>
+
+              <div class="col-md-3 col-6 d-grid">
+                <button type="button" class="btn btn-lg" (click)="seleccionarIdiomaTraducir('en')"><img class="trad" src="https://getflags.net/img1000/gb.png"/>   Ingles</button>
+              </div>
+
+              <div class="col-md-3 col-6 d-grid">
+                <button type="button" class="btn btn-lg" (click)="seleccionarIdiomaTraducir('es')"><img class="trad" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png"/>   Español</button>
+              </div>
+          </div>
+        </div>
+  
+          <button type="button" class="col-md-12 btn btn-lg btn-danger" (click)="ingresarTexto(Texto.value)" (click)="traducir()">Traducir</button>
+        
+    
+        <div class="col-md-12">
+          <br>
+          <textarea class="form-control" id="textoTraduc" rows="5">{{textoTraducido}}</textarea>
+            <br>
+        </div>
+
+        <div class="col-md-12">
+          <div class="row bg-light">
+            <div class="col-4 text-center">
+                <button class="btn fs-1"><i class="bi bi-clipboard width" ></i></button>        
+                   
+               </div>
+               <div class="col-4 text-center">
+                   <button class="btn fs-1"><i class="bi bi-trash"></i></button>
+             </div>
+             <div class="col-4 text-center ">
+                 <button class="btn fs-1"><i class="bi bi-x-square"></i></button>
+                 
+             </div>
+
+          </div>
+        </div>
+  </div>
+</form>

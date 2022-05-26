@@ -1,0 +1,171 @@
+<div class="row d-flex m-0">
+    <div class="col-md-9 d-none d-md-block p-2">
+        <div class="w-100 py-3 fs-4 mb-3 text-center text-white bg-primary">Conversor de divisas</div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th *ngFor="let moneda of monedas">
+                            <img class="icono-tabla img-fluid d-block mx-auto" [src]="moneda.icono">
+                            <p class="text-center">{{moneda.nombre | uppercase}}</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dato of datos">
+                        <th scope="row">
+                            <div class="d-flex justify-contennt-center my-1">
+                                <img class="icono-tabla d-block mx-auto my-auto" [src]="dato.icono">
+                            </div>
+                        </th>
+                        <td>
+                            <p class="mx-0 my-1 text-center text-uppercase">1 {{dato.nombre}}</p>
+                            <p class="mx-0 my-1 text-center text-capitalize">inverse</p>
+                        </td>
+                        <td *ngFor="let valor of dato.valor.directo;let i=index">
+                            <p class="text-center my-1">{{dato.valor.directo[i] | number:"1.5"}}</p>
+                            <p class="text-center my-1">{{dato.valor.inverso[i] | number:"1.5"}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-12 p-2">
+        <div class="py-1 fs-5 mb-3 text-center text-white text-capitalize bg-primary">Conversor de divisas</div>
+        <form class="text-white bg-primary pt-2 pb-2">
+            <div class="m-3">
+                <label for="numero" class="form-label">Cantidad:</label>
+                <input type="number" [(ngModel)]="montoI" name="montoInicial" class="form-control" id="numero" (change)="convertirModena(actual,posterior,montoI)">
+            </div>
+            <div class="m-3">
+                <label for="moneda" class="form-label">De</label>
+                <select id="moneda" [(ngModel)]="actual" name="monedaActual" class="form-select" (change)="convertirModena(actual,posterior,montoI)">
+                        <option *ngFor="let opcion of monedas" [value]="opcion.nombre">({{opcion.nombre}}) {{opcion.detalle}}</option>
+                </select>
+            </div>
+            <div class="m-3">
+                <label for="moneda-cambiar" class="form-label">A</label>
+                <select id="moneda-cambiar" [(ngModel)]="posterior" name="monedaPosterior" class="form-select" (change)="convertirModena(actual,posterior,montoI)">
+                        <option *ngFor="let opcion of monedas" [value]="opcion.nombre">({{opcion.nombre}}) {{opcion.detalle}}</option>
+                </select>
+            </div>
+            <div class="m-3">
+                <small>Total: </small>
+                <p class="bg-light text-dark text-end p-2 rounded">{{posterior+"$"}}{{montoP | number:'1.2' }}</p>
+            </div>
+        </form>
+    </div>
+</div>
+<!--
+<head>
+    <link rel="stylesheet" href="punto-c.component.css">
+  </head>
+<div class="row">
+    <content class="col-md-8 d-none d-md-block bg-light">
+       <div class="table-responsive">
+           <table class="table table-striped ">
+               <tr class="table-danger">
+                   <th colspan="5">
+                    <h4>Conversor de Divisas</h4>
+                    </th>
+               </tr>
+               <tr>
+               <th></th>
+               <th></th>
+               <th> <img class="tabla" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png"/>   <br/>
+                USD</th>
+            <th><img class="tabla" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/European_flag%2C_incorrect_star_rotation.svg/225px-European_flag%2C_incorrect_star_rotation.svg.png"/>   <br/>
+                EUR</th>
+            <th><img class="tabla" src="https://getflags.net/img1000/gb.png" />   <br/>
+                GBP</th>
+            <th><img class="tabla" src="https://www.banderas-mundo.es/data/flags/w580/jp.png"/>   <br/>
+                JPY</th>
+            <th><img class="tabla" src="https://www.banderas-mundo.es/data/flags/w580/cn.png"/>   <br/>
+                CNY</th>
+            <th><img class="tabla" src="https://www.banderas-mundo.es/data/flags/w1600/au.png"/>   <br/>
+                AUD</th>
+            <th><img class="tabla" src="https://s2.coinmarketcap.com/static/img/coins/200x200/1.png"/>   <br/>
+                BTC</th>
+            <th><img class="tabla" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/200px-Flag_of_Argentina.svg.png"/> <br/>  
+                ARS</th>
+               </tr>
+               <tr>
+                   <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png" class="tabla"></td>
+                   <td>1 USD <P>Inverso</P></td>
+                   <td>1.000000 <p>1.000000</p></td>
+                   <td>0.919901 <p>1.087074</p></td>
+                   <td>{{convUSDaARS}} <p>{{convARSaUSD}}</p></td>    
+               </tr>
+               <tr>
+                   <td><img class="tabla" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/European_flag%2C_incorrect_star_rotation.svg/225px-European_flag%2C_incorrect_star_rotation.svg.png"></td>
+                   <td>1 EUR <P>Inverso</P></td>
+                   <td>1.087074 <p>0.919901</p></td>
+                   <td>1.000000 <p>1.000000</p></td>
+                   <td>{{convUEaARS}} <p>{{convARSaUE}}</p></td>
+               </tr>
+               <tr>
+                   <td><img class="tabla" src="https://getflags.net/img1000/gb.png"></td>
+                   <td>1 GBP <p>Inverso</p></td>
+                   <td>1.232332 <p>0.811469</p></td>
+                   <td>1.133623 <p>0.882127</p></td>
+                   <td>{{convUKaARS}} <p>{{convARSaUK}}</p></td>
+               </tr>
+               <tr>
+                   <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/200px-Flag_of_Russia.svg.png" class="tabla"></td>
+                   <td>1 RUB <P>Inverso</P></td>
+                   <td>0.013226 <p>75.61134</p></td>
+                   <td>0.012166 <p>82.19511</p></td>
+                   <td>{{convRUBaARS}} <p>{{convARSaRUB}}</p></td>
+               </tr>
+           </table>
+       </div>
+     
+    </content>
+
+    <aside class="col-sm-12 col-md-4 bg-light">
+        <div class="row justify-content-center" style="background-color: rgb(40, 30, 182);">
+           <h4>Conversor de Divisas</h4>
+       </div>
+       
+       <div class="row bg-primary justify-content-center">
+           <form #formdivisa="ngForm">
+                <div class="form-group"><p></p>
+                    <label for="inputNumber" style="color: white;">Cantidad</label>
+                    <input type="text" class="form-control" name="inputValor" id="inputTextValor" placeholder="Cantidad" style="text-align: right;" [(ngModel)]="transaccionConvert.valor">
+                </div>
+                <div class="form-group">
+                    <label for="select1" style="color: white;">De</label><p></p>
+                    <select name="moneda" id="select1" [(ngModel)]="transaccionConvert.de"> 
+                        <option value="s">--Elegir Moneda--</option>
+                        <option value="USD">USD Dólares EEUU</option>
+                        <option value="EUR">EU Euro EU</option>
+                        <option value="ARS">ARS Pesos Argentinos</option>
+                        <option value="GBP">GBP Libra Esterlina GBP</option>
+                        <option value="RUB">RUB Rublo Ruso RUB</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="select2" style="color: white;">A</label><p></p>
+                    <select name="moneda2" id="select2" [(ngModel)]="transaccionConvert.a">
+                        <option value="s">--Elegir Moneda--</option>
+                        <option value="USD">USD Dólares EEUU</option>
+                        <option value="EUR">EU Euro EU</option>
+                        <option value="ARS">ARS Pesos Argentinos</option>
+                        <option value="GBP">GBP Libra Esterlina GBP</option>
+                        <option value="RUB">RUB Rublo Ruso RUB</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="my-input">Conversión: </label><p></p>
+                    <label for="my-input" ><i class="fas fa-dollar-sign"></i> {{transaccionConvert.result}}</label>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-warning  fas my-5 " (click)="convertir()"><h5>Convertir <i class="fas fa-arrow-right text-white " style="padding-left: 70px;"></i></h5></button>
+                </div>
+           </form>
+        </div>
+    </aside>
+</div>
+-->

@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="nombre">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscar()" >Buscar</button>
+        </div>
+        <div class="row">
+            <button class="col-4 mb-2 btn btn-dark " type="button" *ngFor="let m of ids">
+                <div class="card bg-dark" (click)="seleccionar(m.id)">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src={{m.img}} alt="" class="card-img">
+                        </div>
+                        <div class="card-body col-8">
+                            <h5>{{m.nombre}}</h5>
+                            <h6>{{m.artista}}</h6>
+                        </div> 
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <iframe [src]="urlF"></iframe>
+    </div>
+</div>

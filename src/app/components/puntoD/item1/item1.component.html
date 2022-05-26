@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="mx-auto col-6">
+      <form>
+          <div class="my-3">
+              <label for="urlconv" class="form-label">URL</label>
+              <input class="form-control" type="url" name="urlconv" id="urlconv" #URL>
+          </div>
+          <div class="d-flex justify-content-center">
+              <button type="button" class="btn btn-primary" (click)="convertirQr(URL.value)">Generar</button>
+          </div>
+      </form>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <div>
+      <div [innerHtml]="imgQr"></div>
+  </div>
+</div>
